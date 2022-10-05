@@ -53,8 +53,9 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 ) || exit 1
 
 debug "Enumerating contents of $1"
-for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
+for file in $(find $1 -maxdepth 1 -type f -name '*.html||*.md' -execdir basename '{}' ';'); do
     debug "Copying $file"
+    rm -f "$1/index.md"
     mv "$1/$file" "$1/index.md"
     mv "$1/index.md" "$tmp_dir"
 done
