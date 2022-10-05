@@ -52,10 +52,12 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
+
+find $tmp_dir -type f -name 'index.md'-execdir basename '{}' '-f'\;
+
 debug "Enumerating contents of $1"
-for file in $(find $1 -maxdepth 1 -type f -name '*.html||*.md' -execdir basename '{}' ';'); do
+for file in $(find $1 -maxdepth 1 -type f -name '*.html||*.md' -exec rm '{}' ';'); do
     debug "Copying $file"
-    rm -f "$1/index.md"
     mv "$1/$file" "$1/index.md"
     mv "$1/index.md" "$tmp_dir"
 done
