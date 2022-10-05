@@ -53,7 +53,7 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 ) || exit 1
 
 
-find $tmp_dir -type f -name 'index.md'-exec rm '{}' '-f'\;
+find $tmp_dir -type f -name 'index.md'-exec rm {} -f\;
 
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html||*.md' -execdir basename '{}' ';'); do
