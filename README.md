@@ -4,10 +4,15 @@ This [GitHub Action][github actions]
 publishes the contents of a directory to your project's [wiki][github wiki]
 from a workflow.
 
+change `github-wiki-publish-action` to this repo
+because of using *.pod file extension
+
+when you are generating `*.html` from `*.asciidoc` (like spring restdocs) and publishing on github wiki -> it will be only seen on `*.pod` mode
+
 ## Usage
 
 In a new or existing workflow,
-add a step using `SwiftDocOrg/github-wiki-publish-action@v1`
+add a step using `geneaky/github-wiki-publish-action2@master`
 with a path to a directory containing the documentation you wish to upload.
 
 ```yml
@@ -23,7 +28,7 @@ jobs:
       - uses: actions/checkout@v1
       # Additional steps to generate documentation in "Documentation" directory
       - name: Upload Documentation to Wiki
-        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        uses: geneaky/github-wiki-publish-action2@master
         with:
           path: "Documentation"
         env:
@@ -108,7 +113,7 @@ MIT
 
 ## Contact
 
-Mattt ([@mattt](https://twitter.com/mattt))
+geneaky ([@geneaky](https://github.com/geneaky/github-wiki-publish-action2/issues))
 
 [github actions]: https://help.github.com/en/actions
 [github wiki]: https://help.github.com/en/github/building-a-strong-community/about-wikis
