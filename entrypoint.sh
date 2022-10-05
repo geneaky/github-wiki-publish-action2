@@ -62,7 +62,7 @@ debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
     debug "Copying $file"
     mv "$1/$file" "$1/$WIKI_PAGE_NAME.md"
-    rm -rf "$tmp_dir/$WIKI_PAGE_NAME.podspec"
+    rm -rf "$tmp_dir/$WIKI_PAGE_NAME.*"
     mv -f "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
 done
 
