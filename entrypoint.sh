@@ -57,6 +57,9 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
+echo test start
+tree
+echo test end
 #/github/workspace
 find /github/workspace/ -name "$WIKI_PAGE_NAME.md" -exec rm {} -f\;
 
