@@ -57,7 +57,7 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
-sudo apt install tree
+apt install tree
 
 echo test start
 tree
