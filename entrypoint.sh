@@ -62,8 +62,8 @@ find "/$tmp_dir" -name "$WIKI_PAGE_NAME.*" -exec rm -f {} \;
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
     debug "Copying $file"
-    mv "$1/$file" "$1/$WIKI_PAGE_NAME.md"
-    mv -f "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
+    mv "$1/$file" "$1/$WIKI_PAGE_NAME.podspec"
+    mv -f "$1/$WIKI_PAGE_NAME.podspec" "$tmp_dir"
 done
 
 debug "Committing and pushing changes"
