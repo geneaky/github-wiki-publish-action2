@@ -60,7 +60,7 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
     debug "Copying $file"
-    rm -f "$1/$WIKI_PAGE_NAME.md"
+    rm -f "$tmp_dir/$WIKI_PAGE_NAME.md"
     mv "$1/$file" "$1/$WIKI_PAGE_NAME.md"
     mv "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
 done
