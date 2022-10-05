@@ -57,12 +57,12 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
+find "/$tmp_dir" -name "$WIKI_PAGE_NAME.*" -exec rm -f {} \;
 
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
     debug "Copying $file"
     mv "$1/$file" "$1/$WIKI_PAGE_NAME.md"
-    rm -rf "$tmp_dir/$WIKI_PAGE_NAME.*"
     mv -f "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
 done
 
