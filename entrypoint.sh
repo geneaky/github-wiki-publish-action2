@@ -58,6 +58,8 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 ) || exit 1
 
 echo test start
+#/github/workspace
+cd $tmp_dir
 pwd
 echo test end
 
