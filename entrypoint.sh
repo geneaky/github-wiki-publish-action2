@@ -57,21 +57,12 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
-apt install tree
-
-echo test start
-tree
-echo test end
-#/github/workspace
-find /github/workspace/ -name "$WIKI_PAGE_NAME.md" -exec rm {} -f\;
-
-rm -rf "$tmp_dir/*/$WIKI_PAGE_NAME.md"
 
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
     debug "Copying $file"
     mv "$1/$file" "$1/$WIKI_PAGE_NAME.md"
-    mv "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
+    mv -f "$1/$WIKI_PAGE_NAME.md" "$tmp_dir"
 done
 
 debug "Committing and pushing changes"
