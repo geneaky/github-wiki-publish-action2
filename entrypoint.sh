@@ -57,13 +57,10 @@ tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
     git pull "$GIT_REPOSITORY_URL"
 ) || exit 1
 
-echo test start
 #/github/workspace
-cd $tmp_dir
-pwd
-echo test end
+find /github/workspace/ -name "$WIKI_PAGE_NAME.md" -exec rm {} -f\;
 
-rm -rf "$tmp_dir/$WIKI_PAGE_NAME.md"
+rm -rf "$tmp_dir/*/$WIKI_PAGE_NAME.md"
 
 debug "Enumerating contents of $1"
 for file in $(find $1 -maxdepth 1 -type f -name '*.html' -execdir basename '{}' ';'); do
